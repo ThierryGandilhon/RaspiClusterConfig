@@ -1,0 +1,27 @@
+---
+- name: NGinx node installation
+  apt: 
+    update_cache=yes
+    state=latest
+    name={{item}}
+  with_items: 
+    - nginx
+
+- name: Ensure NGinx is running
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Install NGinx configuration
+  template:
+    src: default.j2
+    dest: /etc/nginx/sites-available/default
+
+- name: Enable configuration
+  file:
+    src: /etc/nginx/sites-available/default
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+  notify:
+    - restart nginx

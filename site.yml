@@ -1,0 +1,18 @@
+---
+- name: Configure a cluster of SBC's'
+  hosts: all
+  become: true
+
+  roles:
+    - standard
+    
+- hosts: raspi000.local
+  become: true
+
+  roles:
+    - nginx
+- hosts: raspi001.local
+  become: true
+
+  roles:
+    - rabbitmq
