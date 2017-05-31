@@ -7,17 +7,17 @@ server {
   server_name raspi000.local;
 
   # Proxy definition for Domoticz UI
-  location /domoticz/ {
+  location /domoticz {
     proxy_pass         http://localhost:8080/;
   }
 
   # Proxy definition for Node Red UI
-  location /nodered/ {
+  location /nodered {
     proxy_pass         http://localhost:1880/;
   }
 
   # Proxy definition for RabbitMQ management UI
-  location /rabbitmq/ {
+  location /rabbitmq {
     proxy_pass         http://raspi001.local:15672/;
   }
 }
