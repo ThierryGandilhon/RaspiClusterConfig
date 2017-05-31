@@ -1,0 +1,40 @@
+---
+- name: RabbitMQ node installation
+  apt: 
+    update_cache=yes
+    state=latest
+    name={{item}}
+  with_items: 
+    - rabbitmq-server
+
+- name: Ensure RabbitMQ is running
+  service:
+    name: rabbitmq-server
+    state: started
+    enabled: yes
+
+- name: Enable RabbitMQ plugins
+  rabbitmq_plugin:
+    names: rabbitmq_management,rabbitmq_mqtt
+    state: enabled
+  notify:
+    - restart rabbitmq
+
+- name: Create RabbitMQ users and assign privileges
+  rabbitmq_user:
+    user: '{{item}}'
+    password: '{{item}}'
+    tags: administrator
+    vhost: /
+    configure_priv: '.*'
+    read_priv: '.*'
+    write_priv: '.*'
+    state: present
+  with_items:
+    - admin
+    - domoticz
+
+- name : Remove default 'Guest' user
+  rabbitmq_user:
+    user: guest
+    state: absent

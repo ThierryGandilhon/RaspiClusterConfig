@@ -1,0 +1,22 @@
+---
+- name: Install basic raspberry server configuration
+  apt: 
+    update_cache=yes
+    state=latest
+    name={{item}}
+  with_items: 
+    - curl
+    - htop
+    - ncdu
+    - tar
+    - unzip
+    - vim
+    - wget
+
+- name: Install public ssh keys
+  authorized_key:
+    user: pi
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - files/public_keys/id_rsa.pub
