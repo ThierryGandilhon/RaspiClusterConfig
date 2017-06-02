@@ -1,4 +1,8 @@
 ---
+- name: Expand file system in order to use all available space on media (reboot needed)
+  command: raspi-config --expand-rootfs
+  become: true
+
 - name: Install basic raspberry server configuration
   apt: 
     update_cache=yes
@@ -20,3 +24,4 @@
     key: '{{ item }}'
   with_file:
     - files/public_keys/id_rsa.pub
+
