@@ -16,6 +16,11 @@
   roles:
     - rabbitmq
 
+- hosts: raspi002.local
+  become: true
+  roles:
+    - nodejs
+
 - hosts: raspi003.local
   become: true
   roles:
