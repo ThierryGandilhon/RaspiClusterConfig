@@ -1,6 +1,21 @@
+---
 - name: reboot
   command: shutdown -r now "Reboot inititated by Ansible"
   become: true
   async: 0
   poll: 0
   ignore_errors: true
+
+- name: halt
+  command: shutdown -h now "System halted via Ansible"
+  become: true
+
+- name: update
+  command: apt-get update
+  become: true
+
+- name: upgrade
+  command: apt-get upgrade
+  become: true
+
+  

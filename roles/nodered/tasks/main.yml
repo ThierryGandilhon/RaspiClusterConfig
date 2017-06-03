@@ -1,0 +1,8 @@
+---
+- name: Node Red node installation
+  apt: 
+    update_cache: yes
+    state: latest
+    name: '{{item}}'
+  with_items: 
+    - nodered

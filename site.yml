@@ -1,5 +1,5 @@
 ---
-- name: Configure a cluster of SBC's'
+- name: Configure a cluster of Raspberry's for IoT usage.
   hosts: all
   become: true
 
@@ -20,6 +20,7 @@
   become: true
   roles:
     - nodejs
+    #- nodered
 
 - hosts: raspi003.local
   become: true
