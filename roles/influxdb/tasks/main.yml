@@ -24,7 +24,7 @@
     enabled: yes
     state: started
 
-- name: Create domoticz user
+- name: Create domoticz user and database
   command: "{{item}}"
   with_items:
     - /usr/bin/influx -execute "CREATE USER domoticz WITH PASSWORD 'domoticz'" 
