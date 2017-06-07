@@ -1,19 +1,22 @@
 ---
-- name: Install influxdata packages repository key
+- name: Install InfluxData packages repository key
   apt_key:
     url: https://repos.influxdata.com/influxdb.key
     state: present
 
-- name: Declare Influxdata package repository
+- name: Declare InfluxData package repository
   apt_repository:
     repo: deb https://repos.influxdata.com/debian jessie stable
     state: present
 
-- name: Install influxdb package
+- name: Install influxdb package and dependencies
   apt: 
     update_cache: yes
     state: latest
-    name: influxdb
+    name:  "{{item}}"
+  with_items: 
+    - influxdb
+    - python-influxdb
 
 - name: Declare and run InfluxDB service
   service:
@@ -21,9 +24,8 @@
     enabled: yes
     state: started
 
-- name: Create domoticz database and user
+- name: Create domoticz user
   command: "{{item}}"
   with_items:
-    - /usr/bin/influx -execute "CREATE DATABASE domoticz"
     - /usr/bin/influx -execute "CREATE USER domoticz WITH PASSWORD 'domoticz'" 
-    - /usr/bin/influx -execute "GRANT ALL on domoticz TO domoticz"
+    - /usr/bin/influx -username domoticz -password domoticz -execute "CREATE DATABASE domoticz"
