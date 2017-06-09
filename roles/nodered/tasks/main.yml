@@ -1,8 +1,30 @@
 ---
-- name: Node Red node installation
+- name: Node Red package installation
   apt: 
     update_cache: yes
-    state: latest
+    state: present
     name: '{{item}}'
   with_items: 
     - nodered
+    - npm
+
+- name: Ensure Node Red is running as a service
+  service:
+    name: nodered
+    state: started
+    enabled: yes
+
+- name: Add Node Red Influxdb nodes
+  npm:
+    state: latest
+    path: ~pi/.node-red
+    name: '{{item}}'
+  with_items:
+    - node-red-contrib-influxdb
+  notify:
+    - restart nodered
+
+- name: REstart Node Red 
+  service:
+    name: nodered
+    state: restarted

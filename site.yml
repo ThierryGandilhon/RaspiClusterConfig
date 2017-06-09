@@ -19,8 +19,7 @@
 - hosts: raspi002.local
   become: true
   roles:
-    - nodejs
-    #- nodered
+    - nodered
 
 - hosts: raspi003.local
   become: true

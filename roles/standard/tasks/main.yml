@@ -1,9 +1,5 @@
 ---
-- name: Expand file system in order to use all available space on media (reboot needed)
-  command: raspi-config --expand-rootfs
-  become: true
-
-- name: Install basic raspberry server configuration
+- name: Install basic raspberry server packages
   apt: 
     update_cache=yes
     state=latest
@@ -16,6 +12,9 @@
     - unzip
     - vim
     - wget
+    - locate
+    - mc
+    - nmap
 
 - name: Install public ssh keys
   authorized_key:
