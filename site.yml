@@ -16,10 +16,10 @@
   roles:
     - rabbitmq
 
-- hosts: raspi002.local
-  become: true
-  roles:
-    - nodered
+#- hosts: raspi002.local
+#  become: true
+#  roles:
+#    - nodered
 
 - hosts: raspi003.local
   become: true

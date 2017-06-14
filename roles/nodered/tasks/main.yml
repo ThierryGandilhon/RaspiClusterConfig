@@ -2,7 +2,7 @@
 - name: Node Red package installation
   apt: 
     update_cache: yes
-    state: present
+    state: latest
     name: '{{item}}'
   with_items: 
     - nodered
@@ -16,15 +16,15 @@
 
 - name: Add Node Red Influxdb nodes
   npm:
-    state: latest
-    path: ~pi/.node-red
-    name: '{{item}}'
+   state: latest
+   path: ~pi/.node-red
+   name: '{{item}}'
   with_items:
     - node-red-contrib-influxdb
   notify:
     - restart nodered
 
-- name: REstart Node Red 
+- name: Restart Node Red 
   service:
     name: nodered
     state: restarted
