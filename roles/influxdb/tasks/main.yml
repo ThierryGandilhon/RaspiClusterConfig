@@ -24,8 +24,15 @@
     enabled: yes
     state: started
 
-- name: Create domoticz user and database
+- name: Create Domoticz user and database
   command: "{{item}}"
   with_items:
     - /usr/bin/influx -execute "CREATE USER domoticz WITH PASSWORD 'domoticz'" 
     - /usr/bin/influx -username domoticz -password domoticz -execute "CREATE DATABASE domoticz"
+
+- name: Create Telegraf user and database
+  command: "{{item}}"
+  with_items:
+    - /usr/bin/influx -execute "CREATE USER telegraf WITH PASSWORD 'telegraf'" 
+    - /usr/bin/influx -username telegraf -password telegraf -execute "CREATE DATABASE telegraf"
+

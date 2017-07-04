@@ -1,0 +1,32 @@
+---
+- name: Install InfluxData packages repository key
+  apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+    state: present
+
+- name: Declare InfluxData package repository
+  apt_repository:
+    repo: deb https://repos.influxdata.com/debian jessie stable
+    state: present
+
+- name: Install Telegraf package and dependencies
+  apt: 
+    update_cache: yes
+    state: latest
+    name:  "{{item}}"
+  with_items: 
+    - telegraf
+
+- name: Install Telegraf configuration
+  template:
+    src: telegraf.conf.j2
+    dest: /etc/telegraf/telegraf.conf
+  notify:
+    - restart telegraf
+
+- name: Declare and run Telegraf service
+  service:
+    name: telegraf
+    enabled: yes
+    state: started
+

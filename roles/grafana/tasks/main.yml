@@ -1,0 +1,25 @@
+---
+- name: Install InfluxData packages repository key
+  apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+    state: present
+
+- name: Declare Grafana package repository
+  apt_repository:
+    repo: deb https://packagecloud.io/grafana/stable/debian/ jessie main
+    state: present
+
+- name: Install Grafana package and dependencies
+  apt: 
+    update_cache: yes
+    state: latest
+    name:  "{{item}}"
+  with_items: 
+    - grafana
+
+- name: Declare and run Grafana service
+  service:
+    name: grafana
+    enabled: yes
+    state: started
+    

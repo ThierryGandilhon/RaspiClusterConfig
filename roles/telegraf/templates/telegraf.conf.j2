@@ -1,0 +1,53 @@
+[agent]
+  interval = "10s"
+  round_interval = true
+  metric_batch_size = 1000
+  metric_buffer_limit = 10000
+  collection_jitter = "0s"
+  flush_interval = "10s"
+  flush_jitter = "0s"
+  debug = false
+
+[[outputs.influxdb]]
+  urls = ["http://192.168.0.23:8086"]
+  database = "telegraf"
+  username = "telegraf"
+  password = "telegraf"
+  timeout = "5s"
+
+
+
+
+# Read metrics about CPU usage
+[[inputs.cpu]]
+  percpu = false
+  totalcpu = true
+  fieldpass = [ "usage*" ]
+
+# Read metrics about disk usagee
+[[inputs.disk]]
+  fielddrop = [ "inodes*" ]
+  mount_points=["/","/home"]
+
+# Read metrics about diskio usage
+[[inputs.diskio]]
+  devices = ["sda2","sda3"]
+  skip_serial_number = true
+
+# Read metrics about network usage
+[[inputs.net]]
+  interfaces = [ "eth0" ]
+  fielddrop = [ "icmp*", "ip*", "tcp*", "udp*" ]
+
+# Read metrics about memory usage
+[[inputs.mem]]
+  # no configuration
+
+# Read metrics about swap memory usage
+[[inputs.swap]]
+  # no configuration
+
+# Read metrics about system load & uptime
+[[inputs.system]]
+  # no configuration
+  
