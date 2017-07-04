@@ -28,5 +28,5 @@
   become: true
   roles:
     - influxdb
-    - grafana
+#    - grafana
     - telegraf

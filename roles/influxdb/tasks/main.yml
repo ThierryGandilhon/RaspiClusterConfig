@@ -35,4 +35,5 @@
   with_items:
     - /usr/bin/influx -execute "CREATE USER telegraf WITH PASSWORD 'telegraf'" 
     - /usr/bin/influx -username telegraf -password telegraf -execute "CREATE DATABASE telegraf"
+    - /usr/bin/influx -username telegraf -password telegraf -execute "CREATE RETENTION POLICY thirty_days ON telegraf DURATION 30d replication 1"
 
