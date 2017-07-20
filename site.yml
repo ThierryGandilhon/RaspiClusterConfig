@@ -27,6 +27,7 @@
 - hosts: raspi003.local
   become: true
   roles:
+    - nfs_client
     - influxdb
 #    - grafana
     - telegraf

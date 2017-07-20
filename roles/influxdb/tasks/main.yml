@@ -18,6 +18,23 @@
     - influxdb
     - python-influxdb
 
+- name: Check that Influxdb storage directory exists with appropriate rights
+  file: 
+    path: /var/lib/influxdb
+    state: directory
+    mode: 0755
+    owner: influxdb
+    group: influxdb
+
+- name: Mount the data volume from warka.local
+  remote_user: influxdb
+  mount:
+    # name: /var/lib/influxdb
+    name: /mnt/influxdb
+    src: "warka.local:/volume1/influxdb"
+    fstype: nfs
+    state: mounted
+
 - name: Declare and run InfluxDB service
   service:
     name: influxdb

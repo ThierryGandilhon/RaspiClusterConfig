@@ -2,3 +2,4 @@ raspi000.local ansible_user=pi
 raspi001.local ansible_user=pi 
 raspi002.local ansible_user=pi 
 raspi003.local ansible_user=pi 
+volumio.local  ansible_user=volumio

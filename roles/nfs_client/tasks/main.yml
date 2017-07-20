@@ -1,0 +1,14 @@
+- name: Install nfs-client package and dependencies
+  apt: 
+    update_cache: yes
+    state: latest
+    name:  "{{item}}"
+  with_items: 
+    - nfs-client
+
+- name: Make sure that rpcbind is running
+  service:
+    name: rpcbind
+    enabled: yes
+    state: started 
+
