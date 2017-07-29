@@ -58,3 +58,9 @@
   username = "admin"
   password = "admin"
 {% endif %}
+
+{% if 'nginx' in role_names %}
+# Read Nginx's basic status information (ngx_http_stub_status_module)
+[[inputs.nginx]]
+  urls = ["http://localhost/server_status"]
+{% endif %}

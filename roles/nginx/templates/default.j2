@@ -6,6 +6,11 @@ server {
   listen      80;
   server_name raspi000.local;
 
+  # Status page
+  location /server_status {
+    stub_status;
+  }
+
   # Proxy definition for Domoticz UI
   location /domoticz {
     proxy_pass         http://localhost:8080/;
