@@ -3,6 +3,7 @@
 #
 server {
   listen      80;
+  server_name raspi000.local;
 
   # NGinx status page
   location /server_status {
@@ -29,3 +30,4 @@ server {
     proxy_pass http://raspi000.local:3000;
   }
 }
+
