@@ -1,28 +1,31 @@
 #
 # Custom NGinx configuration
 #
-
 server {
   listen      80;
-  server_name raspi000.local;
 
-  # Status page
+  # NGinx status page
   location /server_status {
-    stub_status;
+    stub_status on;
   }
 
   # Proxy definition for Domoticz UI
   location /domoticz {
-    proxy_pass         http://localhost:8080/;
+    proxy_pass http://localhost:8080;
   }
 
   # Proxy definition for Node Red UI
   location /nodered {
-    proxy_pass         http://localhost:1880/;
+    proxy_pass http://localhost:1880;
   }
 
   # Proxy definition for RabbitMQ management UI
   location /rabbitmq {
-    proxy_pass         http://raspi001.local:15672/;
+    proxy_pass http://raspi001.local:15672;
+  }
+
+  # Proxy definition for Grafana
+  location /grafana {
+    proxy_pass http://raspi000.local:3000;
   }
 }
