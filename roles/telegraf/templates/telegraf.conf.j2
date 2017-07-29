@@ -50,4 +50,11 @@
 # Read metrics about system load & uptime
 [[inputs.system]]
   # no configuration
-  
+
+{% if 'rabbitmq' in role_names %}
+# Read metrics from local RabbitMQ server via the management API
+[[inputs.rabbitmq]]
+  url = "http://localhost:15672"
+  username = "admin"
+  password = "admin"
+{% endif %}
