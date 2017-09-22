@@ -2,7 +2,7 @@
 Automatic configuration of a Raspberry cluster using Ansible.
 Used to manage my personal cluster of SBC with Ansible.
 
-Cluster made of 8 machines :
+Cluster made of 7 machines :
 
 * raspi000 : runs domoticz, and grafana
   * Connected to RfxCom 433 MHz receiver
