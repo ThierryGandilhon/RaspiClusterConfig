@@ -2,9 +2,16 @@
 Automatic configuration of a Raspberry cluster using Ansible.
 Used to manage my personal cluster of SBC with Ansible.
 
-Cluster made of 4 machines :
+Cluster made of 8 machines :
 
-* 001 : runs domoticz, and grafana
-* 002 : runs rabbitmq (using MQTT proticol)
-* 003 : runs node red
-* 004 : runs influxdb (should also run grafana as well)
+* raspi000 : runs domoticz, and grafana
+  * Connected to RfxCom 433 MHz receiver
+  * Connected to a MySensors gateway
+  * Grafana should be moved to raspi003
+* raspi001 : runs rabbitmq (with MQTT protocol support)
+* raspi002 : runs node red
+* raspi003 : runs influxdb (should also run grafana as well)
+* raspi004 : newly installed
+* raspi005 : newly installed
+
+* volumio : audio player
