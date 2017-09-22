@@ -5,24 +5,22 @@
 
   roles:
     - standard
+    - telegraf
     
 - hosts: raspi000.local
   become: true
   roles:
     - nginx
-    - telegraf
 
 - hosts: raspi001.local
   become: true
   roles:
     - rabbitmq
-    - telegraf
 
 - hosts: raspi002.local
   become: true
   roles:
 #    - nodered
-    - telegraf
 
 - hosts: raspi003.local
   become: true
@@ -30,4 +28,3 @@
     - nfs_client
     - influxdb
 #    - grafana
-    - telegraf
