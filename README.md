@@ -55,12 +55,13 @@ To see hosts uptime:
 ansible all -a uptime
 ```
 
-To become `root`, use the `--become` option:
+To become `root`, use the `--become` option. Here are some exmaples of packets management.
 
 ```bash
 ansible all -m apt -a "upgrade=no update_cache=yes" --become --forks=10
 ansible all -m apt -a "upgrade=dist update_cache=yes" --become --forks=10
 ansible all -m apt -a "upgrade=dist update_cache=yes autoremove=yes" --become --forks=10
+ansible all -m apt -a "name=nfs-kernel-server state=absent purge=yes autoremove=yes" --become --forks=10
 ```
 
 ### Gather information on hosts
