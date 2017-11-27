@@ -4,10 +4,7 @@
   become: true
   roles:
     - standard
-    - telegraf
-    - geerlingguy.nfs
     - docker
-    - kubernetes
     
 - hosts: raspi000.local
   become: true
