@@ -4,12 +4,10 @@
   become: true
   roles:
     - standard
-    - docker
     
 - hosts: raspi000.local
   become: true
   roles:
-    - nginx
     - SimpliField.node
 
 - hosts: raspi001.local
@@ -27,3 +25,7 @@
   roles:
     - influxdb
     - grafana
+
+- hosts: cluster01
+  roles:
+    - docker
