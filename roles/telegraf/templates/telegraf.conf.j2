@@ -9,7 +9,7 @@
   debug = false
 
 [[outputs.influxdb]]
-  urls = ["http://192.168.0.23:8086"]
+  urls = ["http://192.168.0.33:8086"]
   database = "telegraf"
   username = "telegraf"
   password = "telegraf"
@@ -63,4 +63,15 @@
 # Read Nginx's basic status information (ngx_http_stub_status_module)
 [[inputs.nginx]]
   urls = ["http://localhost/server_status"]
+{% endif %}
+
+{% if 'Benaud12.docker-pi' in role_names %}
+[[inputs.docker]]
+  endpoint = "unix:///var/run/docker.sock"
+  container_names = []
+  timeout = "5s"
+  perdevice = true
+  total = false
+  docker_label_include = []
+  docker_label_exclude = []
 {% endif %}

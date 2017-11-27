@@ -15,6 +15,9 @@
     - locate
     - mc
     - nmap
+    - apt-transport-https
+    - ca-certificates
+    - ntp
 
 - name: Install public ssh keys
   authorized_key:

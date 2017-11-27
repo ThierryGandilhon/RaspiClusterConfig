@@ -30,3 +30,7 @@
     enabled: yes
     state: started
 
+- name: Add the telegraf user to the docker group for gathering stats
+  user: 
+    name: telegraf
+    groups: docker

@@ -1,0 +1,23 @@
+---
+- name: Install Kubernetes packages repository key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: Declare Kubernetes package repository
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+
+- name: Install Kubernetes package and dependencies
+  apt: 
+    update_cache: yes
+    state: latest
+    name:  "{{item}}"
+  with_items: 
+    - netfilter-persistent
+    - kubeadm
+    - kubelet
+    - kubectl
+    - kubernetes-cni
+

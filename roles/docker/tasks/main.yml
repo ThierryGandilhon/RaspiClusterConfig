@@ -1,0 +1,23 @@
+---
+- name: Install Docker packages repository key
+  apt_key:
+    url: https://download.docker.com/linux/raspbian/gpg 
+    state: present
+
+- name: Declare Docker package repository
+  apt_repository:
+    repo: deb [arch=armhf] https://download.docker.com/linux/raspbian stretch edge
+    state: present
+
+- name: Install Docker package and dependencies
+  apt: 
+    update_cache: yes
+    state: latest
+    name:  "{{item}}"
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - software-properties-common 
+    - gnupg2
+    - docker-ce
+

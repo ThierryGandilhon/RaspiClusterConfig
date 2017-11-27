@@ -1,16 +1,19 @@
 ---
-- name: Configure a cluster of Raspberry's for IoT usage.
+- name: Configure a cluster of Raspberries.
   hosts: all
   become: true
-
   roles:
     - standard
     - telegraf
+    - geerlingguy.nfs
+    - docker
+    - kubernetes
     
 - hosts: raspi000.local
   become: true
   roles:
     - nginx
+    - SimpliField.node
 
 - hosts: raspi001.local
   become: true
@@ -25,6 +28,5 @@
 - hosts: raspi003.local
   become: true
   roles:
-    - nfs_client
     - influxdb
-#    - grafana
+    - grafana

@@ -1,12 +1,12 @@
 ---
 - name: Install InfluxData packages repository key
   apt_key:
-    url: https://repos.influxdata.com/influxdb.key
+    url: https://bintray.com/user/downloadSubjectPublicKey?username=bintray 
     state: present
 
 - name: Declare Grafana package repository
   apt_repository:
-    repo: deb https://packagecloud.io/grafana/stable/debian/ jessie main
+    repo: deb https://dl.bintray.com/fg2it/deb jessie main
     state: present
 
 - name: Install Grafana package and dependencies
@@ -15,11 +15,12 @@
     state: latest
     name:  "{{item}}"
   with_items: 
+    - apt-transport-https
     - grafana
 
 - name: Declare and run Grafana service
   service:
-    name: grafana
+    name: grafana-server
     enabled: yes
     state: started
     
