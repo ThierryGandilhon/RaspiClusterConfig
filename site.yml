@@ -27,5 +27,7 @@
     - grafana
 
 - hosts: cluster01
+  become: true
   roles:
+    - nfs_client
     - docker

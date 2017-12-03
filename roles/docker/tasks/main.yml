@@ -1,12 +1,12 @@
 ---
 - name: Install Docker packages repository key
   apt_key:
-    url: https://download.docker.com/linux/raspbian/gpg 
+    url: http://download.docker.com/linux/raspbian/gpg
     state: present
 
 - name: Declare Docker package repository
   apt_repository:
-    repo: deb [arch=armhf] https://download.docker.com/linux/raspbian stretch edge
+    repo: deb [arch=armhf] https://download.docker.com/linux/raspbian stretch stable
     state: present
 
 - name: Install Docker package and dependencies

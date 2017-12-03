@@ -12,3 +12,18 @@
     enabled: yes
     state: started 
 
+- name: Create mountable directory
+  file:
+    path: /mnt/shared
+    state: directory
+    mode: 777
+    owner: root
+    group: root
+
+- name: Mount common volume
+  mount:
+    path: /mnt/shared 
+    src: warka.local:/volume1/shared
+    fstype: nfs
+    opts: defaults
+    state: mounted
