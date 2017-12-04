@@ -27,3 +27,12 @@
   with_file:
     - files/public_keys/id_rsa.pub
 
+- name: Install bash related files for user pi
+  template:
+    src: '{{item}}.j2'
+    dest: '/home/pi/.{{item}}'
+  with_items:
+    - bashrc
+    - bash_aliases
+  tags:
+    - bash
