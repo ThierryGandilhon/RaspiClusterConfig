@@ -4,6 +4,8 @@
   become: true
   roles:
     - standard
+    - nfs_client
+    - docker
     
 - hosts: raspi000.local
   become: true
@@ -25,9 +27,3 @@
   roles:
     - influxdb
     - grafana
-
-- hosts: cluster01
-  become: true
-  roles:
-    - nfs_client
-    - docker

@@ -21,18 +21,19 @@
 
 - name: Install public ssh keys
   authorized_key:
-    user: pi
+    user: '{{ ansible_user }}'
     state: present
     key: '{{ item }}'
   with_file:
     - files/public_keys/id_rsa.pub
 
-- name: Install bash related files for user pi
+- name: Install bash related files for default user
   template:
     src: '{{item}}.j2'
-    dest: '/home/pi/.{{item}}'
+    dest: '/home/{{ ansible_user }}/.{{item}}'
   with_items:
     - bashrc
     - bash_aliases
+    - bash_profile
   tags:
     - bash
